@@ -24,8 +24,8 @@ import ConfirmForm from "./components/ConfirmForm";
 import NeedLogin from "../NeedLogin";
 
 const Cart = () => {
-  const token = useSelector((state) => state.userReducer.token);
-  const cart = useSelector((state) => state.cartReducer.Carts);
+  const token = useSelector((state) => state.userReducer?.token);
+  const cart = useSelector((state) => state.cartReducer?.cart);
   const [openDia, setOpenDia] = useState(false);
   const [diaContent, setdiaContent] = useState();
 
@@ -38,8 +38,6 @@ const Cart = () => {
     return total;
   };
 
-  console.log(cart);
-
   return (
     <>
       {!token ? (
@@ -50,7 +48,6 @@ const Cart = () => {
         <Box
           my={4}
           mx={{ md: 2, xs: 1 }}
-          minHeight="calc(100vh - 264px)"
           textAlign="center"
           display={cart.length < 1 ? "flex" : "block"}
           alignItems="center"

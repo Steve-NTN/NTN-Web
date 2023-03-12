@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { api } from '../../configs';
+import { domain } from '../../configs';
 
 const apiTemplate = async (endpoint, method='GET', data, handleSuccess, handleFail) => {
-  await (method === 'POST'? axios.post(`${api.DOMAIN_API}${endpoint}`, data):
-  axios.get(`${api.DOMAIN_API}${endpoint}`, data))
+  await (method === 'POST'? axios.post(`${domain.DOMAIN_API}${endpoint}`, data):
+  axios.get(`${domain.DOMAIN_API}${endpoint}`, data))
   .then(res => {
     handleSuccess(res.data);
   })

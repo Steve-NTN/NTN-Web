@@ -1,13 +1,16 @@
 import { ThemeProvider } from "@mui/material";
-import { createStore } from "redux";
-import {  Provider } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Dashboard, Login, Order, WebSocketPage } from "./pages";
+import { Chat, Dashboard, Ggmap, Login, Order } from "./pages";
 
 import theme from "./themes";
-import rootReducer from "./services/reducers"
+import rootReducer from "./services/reducers";
+import { lazy, Suspense } from "react";
+import { Loading } from "./components";
 
-const store = createStore(rootReducer);
+const Tech = lazy(() => import("./pages/Tech"));
+
+const store = rootReducer;
 
 function App() {
   return (
@@ -18,8 +21,16 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/order/*" element={<Order />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/websocket" element={<WebSocketPage />} />
-            <Route path="/chat" element={<Order />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/ggmap" element={<Ggmap />} />
+            <Route
+              path="/tech"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Tech />
+                </Suspense>
+              }
+            />
           </Routes>
         </Router>
       </ThemeProvider>

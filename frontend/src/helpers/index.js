@@ -1,7 +1,5 @@
 import defaultImage from "../assets/image/default/item_default.png";
-import { api } from "../configs";
-
-const configs = api;
+import { domain } from "../configs";
 
 const checkListProtocols = (link = "") => {
   let protocols = ["http", "https"],
@@ -19,7 +17,7 @@ const formatImageUrl = (url) => {
   return url
     ? checkListProtocols(url)
       ? url
-      : `${configs.SERVER_IMAGE_URL}${url}`
+      : `${domain.DOMAIN_MEDIA}${url}`
     : defaultImage;
 };
 

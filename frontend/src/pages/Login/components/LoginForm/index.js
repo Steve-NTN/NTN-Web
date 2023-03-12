@@ -14,35 +14,56 @@ import PersonIcon from "@mui/icons-material/Person";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import KeyIcon from "@mui/icons-material/Key";
-import apiTemplate from "../../../../services/api";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../../../services/reducers/user";
+import { checkValidString } from "../../../../helpers";
 
 const LoginForm = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   const [account, setAccount] = useState({
     username: null,
     password: null,
   });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let isValidUser = checkValidString(account?.username);
+    let isValidPassword = checkValidString(account?.password);
+    let isCorrect =
+      account?.username === "admin" && account.password === "nghia";
+
+    let tmpErrors = {
+      username: {
+        error: !isValidUser,
+        errorText: isValidUser ? "" : "Vui lòng nhập tên đăng nhập.",
+      },
+      password: {
+        error: !isValidPassword,
+        errorText: isValidPassword ? "" : "Vui lòng nhập mật khẩu.",
+      },
+      main: {
+        error: !isCorrect,
+        errorText: isCorrect ? "" : "Tên đăng nhập hoặc mật khẩu không đúng.",
+      },
+    };
+    setErrors(tmpErrors);
+    return isValidUser && isValidPassword && isCorrect;
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
-    apiTemplate(
-      "/api-token-auth/",
-      "POST",
-      account,
-      (res) => {
-        localStorage.setItem("user", JSON.stringify(res));
+    if (validateForm()) {
+      dispatch(setToken("test"));
+      nav("/");
+    }
+  };
 
-        if (res.token) {
-          nav("/");
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  const handleChangeParam = (e, field) => {
+    setAccount({ ...account, [field]: e?.target?.value });
   };
 
   return (
@@ -51,11 +72,7 @@ const LoginForm = () => {
         Đăng nhập
       </Typography>
       <Box className={classes.loginFormBg}>
-        <Box
-          className={classes.loginForm}
-          component="form"
-          onSubmit={submitForm}
-        >
+        <Box className={classes.loginForm}>
           <Box>
             <Grid item container>
               <Grid item xs={4} className={classes.centerBox}>
@@ -67,10 +84,11 @@ const LoginForm = () => {
               <Grid item xs={8}>
                 <CustomInput
                   width="100%"
-                  getValue={(value) =>
-                    setAccount({ ...account, username: value })
-                  }
+                  value={account.username}
+                  onChange={(e) => handleChangeParam(e, "username")}
                   required={true}
+                  error={errors?.username?.error}
+                  helperText={errors?.username?.errorText}
                 />
               </Grid>
             </Grid>
@@ -88,6 +106,10 @@ const LoginForm = () => {
                   getValue={(value) =>
                     setAccount({ ...account, password: value })
                   }
+                  error={errors?.password?.error}
+                  value={account.password}
+                  onChange={(e) => handleChangeParam(e, "password")}
+                  helperText={errors?.password?.errorText}
                   type={showPassword ? "text" : "password"}
                   required={true}
                   InputProps={{
@@ -110,13 +132,23 @@ const LoginForm = () => {
               </Grid>
             </Grid>
 
+            {errors?.main?.error && (
+              <Typography
+                variant="body2"
+                align="center"
+                sx={{ color: "var(--text-error-color)", my: 2 }}
+              >
+                {errors?.main?.errorText}
+              </Typography>
+            )}
+
             <Box mt={4} className={classes.centerBox}>
               <span>
                 {" "}
                 <CustomButton
                   text="Đăng nhập"
                   padding="8px 16px"
-                  type="submit"
+                  event={submitForm}
                 />
               </span>
             </Box>

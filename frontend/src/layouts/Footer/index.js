@@ -48,12 +48,12 @@ const Footer = () => {
       icon: <BusinessIcon className={classes.icon} />,
     },
     {
-      label: "+84969169260",
+      label: "+0364...",
       event: null,
       icon: <PhoneIcon className={classes.icon} />,
     },
     {
-      label: "nhatphanho@gmail.com",
+      label: "trongnghia...@gmail.com",
       event: null,
       icon: <AlternateEmailIcon className={classes.icon} />,
     },
@@ -78,7 +78,7 @@ const Footer = () => {
   ];
 
   return (
-    <Box className={classes.footer}>
+    <Box id="footer" className={classes.footer} >
       <Grid container sx={{ padding: 2 }}>
         <Grid item md={3} sm={6} xs={12} sx={{ marginBottom: { xs: 2 } }}>
           <Typography className="title">NTNWINE Store</Typography>

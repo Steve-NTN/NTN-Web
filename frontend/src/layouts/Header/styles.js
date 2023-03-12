@@ -11,6 +11,7 @@ export default makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
     "& .logoText": {
+      cursor: "pointer",
       fontWeight: 600
     }
   },

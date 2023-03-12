@@ -15,4 +15,5 @@ code {
 :root {
   --text-gray-color: #828282;
   --bg-gray-color: #828282;
+  --text-error-color: red;
 }

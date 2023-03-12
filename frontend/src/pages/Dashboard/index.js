@@ -5,6 +5,8 @@ import { Header } from "../../layouts";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PowerIcon from '@mui/icons-material/Power';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import BiotechIcon from '@mui/icons-material/Biotech';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import useStyles from "./styles";
 
@@ -15,6 +17,8 @@ const Dashboard = () => {
     { label: "Order", icon: <ShoppingCartIcon />, link: "order" },
     { label: "Web socket", icon: <PowerIcon />, link: "websocket" },
     { label: "Chat", icon: <QuestionAnswerIcon />, link: "chat" },
+    { label: "Tech", icon: <BiotechIcon />, link: "tech" },
+    { label: "Google map", icon: <TravelExploreIcon />, link: "ggmap" },
   ];
 
   const handleClickFeature = (feature) => {

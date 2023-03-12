@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux';
-import userReducer from "./user";
-import loadingReducer from './loading';
-import cartReducer from './cart';
+import { configureStore } from "@reduxjs/toolkit";
 
-export default combineReducers({
-  userReducer,
-  loadingReducer,
-  cartReducer
-})
+import cartReducer from "./cart";
+import userReducer from "./user";
+
+export default configureStore({
+  reducer: {
+    cartReducer,
+    userReducer
+  },
+});

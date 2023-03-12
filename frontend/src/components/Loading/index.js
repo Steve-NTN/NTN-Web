@@ -1,21 +1,38 @@
-import React from 'react';
-// import useStyles from './styles';
-import { useSelector, useDispatch } from 'react-redux';
-import CustomDialog from '../CustomDialog';
-import { setLoading } from '../../actions/loadingAction';
+import React from "react";
+import { Box, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import useStyles from "./styles";
 
-const Loading = () => {
-  // const classes = useStyles();
-  const loading = useSelector((state) => state.loadingReducer);
-  const dispatch = useDispatch();
-
-  return ( 
-    loading && (
-      <CustomDialog dialogContent={loading?.content} openDialog={loading.open} 
-        closeDialog={() => dispatch(setLoading({open: false}))}
-      />
-    )
+const Loading = ({ text, circle, center, att={}, showText=true }) => {
+  const classes = useStyles();
+  return (
+    <Box
+      className={classes.textLoading}
+      sx={{
+        top: "50%",
+        left: "50%",
+        transform: center ? "translate(-50%, -50%)": "intial",
+        display: showText? 'initial': 'flex',
+        justifyContent: 'center',
+        position: `${center ? "absolute" : "initial"}`,
+        zIndex: 9999,
+        ...att
+      }}
+    >
+      {circle ? (
+        <CircularProgress size={30} style={{ color: "#E98100" }} />
+      ) : (
+        <div />
+      )}
+      {
+        showText && (
+          <Typography variant="body1" style={{ fontWeight: 600 }}>
+            {text}
+          </Typography>
+        )
+      }
+    </Box>
   );
-}
+};
 
 export default Loading;

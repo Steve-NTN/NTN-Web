@@ -60,7 +60,7 @@ export default function Header() {
   const pages = [
     { label: "Trang chủ", link: "", icon: null },
     { label: "Sản phẩm", link: "product", icon: null },
-    { label: "Liên hệ", link: "contact", icon: null },
+    // { label: "Liên hệ", link: "contact", icon: null },
     { label: "Giới thiệu", link: "about", icon: null },
     {
       label: "",
@@ -151,7 +151,7 @@ export default function Header() {
   }, [wrapperRef]);
 
   return (
-    <AppBar position="sticky" className={classes.background}>
+    <AppBar position="sticky" className={classes.background} id="header">
       <Box ml={2} mr={2}>
         <Toolbar
           disableGutters

@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit"
+
 const initialState = {
   token: null,
   phone: null,
@@ -5,19 +7,19 @@ const initialState = {
   email: null
 }
 
-const userReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_USER':
-      return {
-        ...state,
-        token: action.payload.token,
-        phone: action.payload.phone,
-        first_name: action.payload.first_name,
-        email: action.payload.email
-      }
-      default:
-      return state
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload
+    },
+    
   }
-}
+})
 
-export default userReducer
+export const {
+  setToken
+} = userSlice.actions;
+
+export default userSlice.reducer

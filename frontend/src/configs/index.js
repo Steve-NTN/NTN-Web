@@ -8,9 +8,9 @@ const breakpoints = {
   desktop: "2560px",
 };
 
-const api = {
-  DOMAIN_API: 'http://127.0.0.1:5000/api',
-  DOMAIN_MEDIA: 'http://127.0.0.1:5000',
+const domain = {
+  DOMAIN_API: 'http://127.0.0.1:5000',
+  DOMAIN_MEDIA: 'http://127.0.0.1:8000',
 }
 
-export { breakpoints, api };
+export { breakpoints, domain };
