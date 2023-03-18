@@ -21,7 +21,7 @@ const formatImageUrl = (url) => {
     : defaultImage;
 };
 
-const validateCommon = (type, value) => {
+const validateCommon = (type, value, splitChar=" ") => {
   if (!value) return type === "money" ? 0 : "_";
 
   if (type === "phone") {
@@ -52,7 +52,7 @@ const validateCommon = (type, value) => {
   }
 
   if (type === "getTimeFromCreation") {
-    return value.split(" ")[1]?.split(":").slice(0, 2)?.join(":");
+    return value.split(splitChar)[1]?.split(":").slice(0, 2)?.join(":");
   }
 
   if (type === "getDateFromCreation") {
@@ -60,8 +60,8 @@ const validateCommon = (type, value) => {
   }
 
   if (type === "formatCreation") {
-    let date = value.split(" ")[0]?.split("-")?.reverse()?.join("/");
-    let time = value.split(" ")[1]?.split(":").slice(0, 2)?.join(":");
+    let date = value.split(splitChar)[0]?.split("-")?.reverse()?.join("/");
+    let time = value.split(splitChar)[1]?.split(":").slice(0, 2)?.join(":");
     return `${time} ${date}`;
   }
 };

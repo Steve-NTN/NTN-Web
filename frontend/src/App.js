@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Chat, Dashboard, Ggmap, Login, Order } from "./pages";
+import { BlogRoute, Chat, Dashboard, Ggmap, Login, Order } from "./pages";
 
 import theme from "./themes";
 import rootReducer from "./services/reducers";
@@ -23,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/ggmap" element={<Ggmap />} />
+            <Route path="blog/*" element={<BlogRoute />} />
             <Route
               path="/tech"
               element={

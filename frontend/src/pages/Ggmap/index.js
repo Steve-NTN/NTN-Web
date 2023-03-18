@@ -1,22 +1,14 @@
 import React from "react";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
+
 
 const Ggmap = () => {
-  const [address, setAddress] = React.useState("");
 
-  const handleSelectAddress = async (value) => {
-    const results = await geocodeByAddress(value);
-    console.log(results);
-  };
 
   console.log("first");
 
   return (
     <>
-      <PlacesAutocomplete
+      {/* <PlacesAutocomplete
         value={address}
         onChange={setAddress}
         onSelect={handleSelectAddress}
@@ -45,7 +37,7 @@ const Ggmap = () => {
             </div>
           );
         }}
-      </PlacesAutocomplete>
+      </PlacesAutocomplete> */}
     </>
   );
 };

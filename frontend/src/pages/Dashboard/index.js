@@ -7,6 +7,7 @@ import PowerIcon from '@mui/icons-material/Power';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 import useStyles from "./styles";
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const classes = useStyles();
   const features = [
     { label: "Order", icon: <ShoppingCartIcon />, link: "order" },
+    { label: "Blog", icon: <NewspaperIcon />, link: "blog" },
     { label: "Web socket", icon: <PowerIcon />, link: "websocket" },
     { label: "Chat", icon: <QuestionAnswerIcon />, link: "chat" },
     { label: "Tech", icon: <BiotechIcon />, link: "tech" },
